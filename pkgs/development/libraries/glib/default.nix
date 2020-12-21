@@ -90,7 +90,7 @@ stdenv.mkDerivation rec {
   setupHook = ./setup-hook.sh;
 
   buildInputs = [
-    libelf setupHook pcre
+    libelf setupHook
     bash gnum4 # install glib-gettextize and m4 macros for other apps to use
   ] ++ optionals stdenv.isLinux [
     libselinux
@@ -103,7 +103,7 @@ stdenv.mkDerivation rec {
     meson ninja pkgconfig perl python3 gettext gtk-doc docbook_xsl docbook_xml_dtd_45
   ];
 
-  propagatedBuildInputs = [ zlib libffi gettext libiconv ];
+  propagatedBuildInputs = [ pcre zlib libffi gettext libiconv ];
 
   mesonFlags = [
     # Avoid the need for gobject introspection binaries in PATH in cross-compiling case.
